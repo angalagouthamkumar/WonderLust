@@ -1,0 +1,78 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2">
+
+    <h3>Edit Your Listing</h3>
+
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" 
+          novalidate class="needs-validation" enctype="multipart/form-data">
+
+      <!-- TITLE -->
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input name="listing[title]" value="<%= listing.title %>" 
+               type="text" class="form-control" required>
+        <div class="invalid-feedback">Please enter a valid title</div>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+        <div class="invalid-feedback">Please enter a description</div>
+      </div>
+
+      <!-- IMAGE -->
+      <div class="mb-3">
+        <p>Original Listing Image</p>
+        <img src="<%= originalImageUrl %>" class="img-thumbnail" style="width: 250px;">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Upload New Image</label>
+        <input name="listingimage" type="file" class="form-control">
+      </div>
+
+      <!-- PRICE + COUNTRY -->
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Price</label>
+          <input name="listing[price]" value="<%= listing.price %>" 
+                 class="form-control" required>
+          <div class="invalid-feedback">Please enter a price</div>
+        </div>
+
+        <div class="col-md-8 mb-3">
+          <label class="form-label">Country</label>
+          <input name="listing[country]" value="<%= listing.country %>" 
+                 type="text" class="form-control" required>
+          <div class="invalid-feedback">Please enter country</div>
+        </div>
+      </div>
+
+      <!-- LOCATION + ADDRESS -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">City / Location</label>
+          <input name="listing[location]" value="<%= listing.location %>" 
+                 type="text" class="form-control" required>
+          <div class="invalid-feedback">Please enter location</div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Address (optional)</label>
+          <input name="listing[address]" 
+                 value="<%= listing.address || '' %>" 
+                 type="text" 
+                 class="form-control" 
+                 placeholder="Street, Area, Landmark">
+        </div>
+      </div>
+
+      <button class="btn btn-dark mt-3">Update Listing</button>
+
+    </form>
+
+  </div>
+</div>
