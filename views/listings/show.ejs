@@ -11,7 +11,9 @@
     <div class="card col-6 offset-3 show-card listing-card">
         <img src="<%=listing.image.url%>" alt="listing_image" class="card-img-top show-img">
         <div class="card-body">
-            <p class="card-text"> Owned by <i> <%= listing.owner.username %> </i> </p>
+            <p class="card-text"> 
+              Owned by <i> <%= listing.owner ? listing.owner.username : "Anonymous" %> </i> 
+            </p>
             <p class="card-text"> <%=listing.description%> <br> </p>
             <p class="card-text"> &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %> <br> </p>
             <p class="card-text"> <%=listing.location%> <br></p>
